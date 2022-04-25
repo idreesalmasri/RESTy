@@ -1,9 +1,11 @@
-import React from 'react';
+
 import './header.css';
 
-const Header = () => (
+const Header = () => {
+    return(
   <div className="header">
     <h1>RESTy</h1>
   </div>
-)
+    )
+}
 export default Header;

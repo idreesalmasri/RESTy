@@ -1,0 +1,37 @@
+.form{
+    
+    /* display: flex; */
+    /* background-color: black; */
+    
+    align-items: center;
+    /* justify-content: center; */
+    padding: 20px 20px;
+    
+    
+}
+
+#inputform { 
+    width: 70%;
+    height: 20 px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+}
+#btn {
+    /* height: 70 px;
+    width: 70px; */
+    padding: 10px 10px;
+    margin-left: 20px;
+}
+
+#textArea{
+    width: 700px;
+    padding: 10px 10px;
+    margin-left: 20px;
+}
+
+.tt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
