@@ -1,4 +1,9 @@
-#res {
+.result {
+    margin-top: 20px;
+    display: inline-block;
+    
     width: 700px;
-   
+    border: 1px solid black;
+    align-items: center;
+    background-color: white;
 }
