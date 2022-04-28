@@ -1,8 +1,8 @@
 .result {
     margin-top: 20px;
-    display: inline-block;
+    /* display: inline-block; */
     
-    width: 700px;
+    width: 100%;
     border: 1px solid black;
     align-items: center;
     background-color: white;
