@@ -1,11 +1,20 @@
 import './App.css';
 import Header from "./componants/header/Header";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useReducer } from "react";
+import historyReducer, {addAction,removeAction} from './reducder';
 import Form from "./componants/form/form";
 import Results from "./componants/result/results";
 import Footer from "./componants/footer/footer";
 
+
+const initialState = {
+  history: [],
+  count: 0,
+  
+}
 function App() {
+  
+  const [state,dispatch] = useReducer(historyReducer,initialState);
   const [data, setData] = useState({});
   const [method, setMethod] = useState("Get");
   const [url, setUrl] = useState();
@@ -33,6 +42,7 @@ function App() {
       const response = await fetch(url);
       const data = await response.json();
       setData(data);
+      dispatch(addAction(data));
     } else if (method === "Post") {
       const response = await fetch(url, {
         method: "Post",
@@ -81,7 +91,7 @@ function App() {
       setLoading(false);
     }
     )
-  }, [data]);
+  }, []);
   return (
     <div id="app">
       <Header />
@@ -91,8 +101,11 @@ function App() {
         handleBody={handleBody}
         urlHandel={urlHandel}
         onSubmit={onSubmit}
+        state={state}
+        
       />
-      {loading ? <Results data={data} /> : null}
+      {loading ? <Results data={data}  /> : null}
+      
       </div>
       <Footer />
     </div>

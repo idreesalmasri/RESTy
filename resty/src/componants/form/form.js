@@ -1,8 +1,7 @@
 
 import './form.css';
-
 // const Form = (props) => {
-    
+
 //     return (
 //         <div >
 //             <form className='form' >
@@ -29,21 +28,28 @@ import './form.css';
 // }
 // export default Form;
 import './form.css';
+
 export default function Form(props) {
+    function handelHistory(e){
+        e.preventDefault();
+        console.log("llllll",props.state);
+    }
     
     return (
         <div  >
             <form className="form" >
-                <input id="inputform" type="text" name="URL"  onChange={props.urlHandel} placeholder='http://api.url.here..............' />
+                <input id="inputform" type="text" name="URL" onChange={props.urlHandel} placeholder='http://api.url.here..............' />
                 <button id="btn" type="submit" value="go" onClick={props.onSubmit} >GO</button>
                 <div className="btn">
                     <button id="btn" type="submit" value="Get" onClick={props.changeMethod} >Get</button>
                     <button id="btn" type="submit" value="Post" onClick={props.changeMethod}>Post</button>
                     <button id="btn" type="submit" value="Put" onClick={props.changeMethod}>Put</button>
-                    <button  id="btn" type="submit" value="Delete" onClick={props.changeMethod} >Delete</button>
+                    <button id="btn" type="submit" value="Delete" onClick={props.changeMethod} >Delete</button>
+                    <button id="btn" type="submit" value="history" onClick={handelHistory} >history</button>
                     <textarea id="textArea" name="w3review" rows="4" cols="50" onChange={props.handleBody} placeholder="Write  json {}" />
                 </div>
             </form>
+            
         </div>
     )
 }
