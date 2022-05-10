@@ -1,6 +1,6 @@
 import './App.css';
 import Header from "./componants/header/Header";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Form from "./componants/form/form";
 import Results from "./componants/result/results";
 import Footer from "./componants/footer/footer";
@@ -72,6 +72,16 @@ function App() {
       setData(data);
     }
   }
+  const removeData = new Promise((resolve)=>{setTimeout(resolve,15000)})
+   
+  useEffect(() => {
+    removeData.then(()=>{
+      setData({});
+      setBody({});
+      setLoading(false);
+    }
+    )
+  }, [data]);
   return (
     <div id="app">
       <Header />
