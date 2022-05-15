@@ -81,7 +81,7 @@ function App() {
       setLoading(false);
     }
     )
-  }, [data]);
+  }, []);
   return (
     <div id="app">
       <Header />
