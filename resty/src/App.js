@@ -9,6 +9,7 @@ function App() {
   const [data, setData] = useState({});
   const [method, setMethod] = useState("Get");
   const [url, setUrl] = useState();
+  const [headers, setHeaders] = useState({});//////////////////
   const [body, setBody] = useState();
   const [loading, setLoading] = useState(false);
   function urlHandel(e) {
@@ -35,21 +36,27 @@ function App() {
       setData(data);
     } else if (method === "Post") {
       const response = await fetch(url, {
+        url: url,///////
         method: "Post",
         headers: {
-          
+          'Accept': 'application/json',//////////////////
           "Content-Type": "application/json",
         },
         body: JSON.stringify(
           JSON.parse(body)
           ),
       });
+      let header= await response.headers.get("Content-Type");/////////////
+      setHeaders({header});/////////////
       const data = await response.json();
       setData(data);
     } else if (method === "Put") {
       const response = await fetch(url, {
+        url: url,
         method: "Put",
         headers: {
+          'Accept': 'application/json',
+
           "Content-Type": "application/json",
         },
         body: JSON.stringify(
@@ -58,10 +65,12 @@ function App() {
       });
       const data = await response.json();
       setData(data);
-      console.log(data);
-      console.log(body);
+      // console.log(data);
+      // console.log(body);
     } else if (method === "Delete") {
       const response = await fetch(url, {
+        url: url,
+
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -72,16 +81,18 @@ function App() {
       setData(data);
     }
   }
-  const removeData = new Promise((resolve)=>{setTimeout(resolve,15000)})
+  const removeData = new Promise((resolve)=>{setTimeout(resolve,25000)})
    
   useEffect(() => {
     removeData.then(()=>{
       setData({});
+      setHeaders({});
       setBody({});
       setLoading(false);
     }
     )
-  }, []);
+  },);
+
   return (
     <div id="app">
       <Header />
@@ -91,8 +102,9 @@ function App() {
         handleBody={handleBody}
         urlHandel={urlHandel}
         onSubmit={onSubmit}
+        setData={setData}
       />
-      {loading ? <Results data={data} /> : null}
+      {loading ? <Results data={data} method={method} url={url} headers={headers} /> : null}
       </div>
       <Footer />
     </div>
